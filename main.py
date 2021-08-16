@@ -10,7 +10,8 @@ class BOW:
     def __init__(self, texts) -> None:
         """ 
         \nCarries out the Bag of Words Algorithm to large sets of text
-        \ntexts: an iterable of strings. Each string carries a set of words/sentences"""
+        \ntexts: an iterable of strings. Each string carries a set of words/sentences
+        """
         # The originally input text file
         self.original = texts
         
@@ -27,7 +28,7 @@ class BOW:
         # word repeated in given text body (based on index)
         self.__repeats_list = self.__get_repeats()
 
-    def __get_text_sets(self):
+    def __get_text_sets(self) -> list:
         finlist = []
         texts = self.original
 
@@ -41,7 +42,7 @@ class BOW:
                 
         return finlist
 
-    def __get_repeats(self):
+    def __get_repeats(self) -> list:
         # make a dictionary that counts the words and 
         # adds them if it's in the set
         finlist = []
@@ -53,14 +54,14 @@ class BOW:
         return finlist
 
     @staticmethod
-    def __append_accordingly(finlist, tokenized_wordset, index, word):
+    def __append_accordingly(finlist, tokenized_wordset, index, word) -> None:
         if word in tokenized_wordset[index]:
             if word in set(finlist[index]):
                 finlist[index][word] += 1
             else:
                 finlist[index][word] = 1
 
-    def get_repeats(self, index):
+    def get_repeats(self, index) -> dict:
         return self.__repeats_list[index]
 
 
