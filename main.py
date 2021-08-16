@@ -27,6 +27,7 @@ class BOW:
     def __get_text_sets(self):
         finlist = []
         texts = self.original
+        
         for i in range(len(texts)):
             # make a set for each text and add 
             # their words (if it's not a stopword)
@@ -35,7 +36,7 @@ class BOW:
                 if not(word in self.stopwords):
                     finlist[i].add(word)
                 
-        return [set(word_tokenize(i)) for i in texts if not(i in self.stopwords)]
+        return finlist
 
     def __get_repeats(self):
         # make a dictionary that counts the 
