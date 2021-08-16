@@ -1,9 +1,7 @@
 # What we need: a place to store 2 inputs, a prompt and manager
 # A place to store the original words, set of stemmed words, dataframe
 # unique words (useful), unique words (useful+useless)
-from nltk.corpus import stopwords
-from nltk.tokenize import word_tokenize
-import pandas as pd
+from head import *
 
 class BOW:
     def __init__(self, texts) -> None:
