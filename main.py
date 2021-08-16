@@ -3,6 +3,9 @@
 # unique words (useful), unique words (useful+useless)
 from head import *
 
+# TODO: make the repeats list ✔
+# TODO: join the repeats list to make a total_repeats variable ❗ 
+
 class BOW:
     def __init__(self, texts) -> None:
         """ 
@@ -22,12 +25,12 @@ class BOW:
         
         # a list of dictionaries. Based on how many times each 
         # word repeated in given text body (based on index)
-        self.__repeats_list = [] 
+        self.__repeats_list = self.__get_repeats()
 
     def __get_text_sets(self):
         finlist = []
         texts = self.original
-        
+
         for i in range(len(texts)):
             # make a set for each text and add 
             # their words (if it's not a stopword)
@@ -39,12 +42,26 @@ class BOW:
         return finlist
 
     def __get_repeats(self):
-        # make a dictionary that counts the 
+        # make a dictionary that counts the words and 
+        # adds them if it's in the set
         finlist = []
-        for i in self.original:
+        tokenized_wordset = self.__text_list
+        for i in range(len(self.original)):
             finlist.append(dict())
+            for word in self.original[i]:
+                self.__append_accordingly(finlist, tokenized_wordset, i, word)
+        return finlist
 
+    @staticmethod
+    def __append_accordingly(finlist, tokenized_wordset, index, word):
+        if word in tokenized_wordset[index]:
+            if word in set(finlist[index]):
+                finlist[index][word] += 1
+            else:
+                finlist[index][word] = 1
 
+    def get_repeats(self, index):
+        return self.__repeats_list[index]
 
 
 def main():
