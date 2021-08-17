@@ -62,9 +62,9 @@ class BOW:
         return self.__repeats_list[index]
 
 
-def main():
-    """Creates a Bag of Words for two inputs"""
+def test():
+    """Method used for testing implemented class"""
     pass  
 
 if __name__ == "__main__":
-    main()
+    test()
