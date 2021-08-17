@@ -26,6 +26,8 @@ class BOW:
         # word repeated in given text body (based on index)
         self.__repeats_list = self.__get_repeats()
 
+        self.total_repeats = dict() # __get_total_repeats()
+
     def __get_text_sets(self) -> list:
         finlist = []
         texts = self.original
@@ -71,6 +73,9 @@ class BOW:
 
     def get_repeats(self, index) -> dict:
         return self.__repeats_list[index]
+
+    def __get_total_repeats() -> dict:
+        pass
 
 
 def test():
