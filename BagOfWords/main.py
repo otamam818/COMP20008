@@ -84,9 +84,9 @@ def test():
         #     texts.append(input())
     except KeyboardInterrupt:
         bow1 = BOW(texts)
-        print(f"\nOriginal text:\n{bow1.original}"               + '\n')
-        print(f"\nStopwords:\n{bow1.stopwords}"                  + '\n')
-        print(f"\nUseless words found:\n{bow1.useless}"          + '\n')
+        print(f"\nOriginal text:\n{bow1.original}"                + '\n')
+        print(f"\nStopwords:\n{bow1.stopwords}"                   + '\n')
+        print(f"\nUseless words found:\n{bow1.useless}"           + '\n')
         print(f"\nFirst text  (tokenized): {bow1.get_repeats(0)}" + '\n')
         print(f"\nSecond text (tokenized): {bow1.get_repeats(1)}" + '\n')
 
