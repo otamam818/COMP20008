@@ -1,6 +1,7 @@
 # What we need: a place to store 2 inputs, a prompt and manager
 # A place to store the original words, set of stemmed words, dataframe
 # unique words (useful), unique words (useful+useless)
+from nltk.data import find
 from head import *
 
 class BOW:
@@ -26,7 +27,7 @@ class BOW:
         # word repeated in given text body (based on index)
         self.__repeats_list = self.__get_repeats()
 
-        self.total_repeats = dict() # __get_total_repeats()
+        self.total_repeats = self.__get_total_repeats()
 
     def __get_text_sets(self) -> list:
         finlist = []
@@ -74,9 +75,15 @@ class BOW:
     def get_repeats(self, index) -> dict:
         return self.__repeats_list[index]
 
-    def __get_total_repeats() -> dict:
-        pass
-
+    def __get_total_repeats(self) -> dict:
+        fin_dict = dict()
+        for wordset in self.__repeats_list:
+            for word in set(wordset):
+                if word in fin_dict:
+                    fin_dict[word] += wordset[word]
+                else:
+                    fin_dict[word] = wordset[word]
+        return fin_dict
 
 def test():
     """Method used for testing implemented class"""
@@ -94,6 +101,7 @@ def test():
         print(f"\nUseless words found:\n{bow1.useless}"           + '\n')
         print(f"\nFirst text  (tokenized): {bow1.get_repeats(0)}" + '\n')
         print(f"\nSecond text (tokenized): {bow1.get_repeats(1)}" + '\n')
+        print(f"Total repeats: {bow1.total_repeats}"              + '\n')
 
 if __name__ == "__main__":
     test()
