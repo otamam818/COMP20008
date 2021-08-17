@@ -3,9 +3,6 @@
 # unique words (useful), unique words (useful+useless)
 from head import *
 
-#// TODO: make the repeats list
-# TODO: join the repeats list to make a total_repeats variable
-
 class BOW:
     def __init__(self, texts) -> None:
         """ 
