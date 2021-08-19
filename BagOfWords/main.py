@@ -27,6 +27,10 @@ class BOW:
         # number of repeats of all words inserted
         self.total_repeats = self.__get_total_repeats()
 
+        # a dictionary of all dataframes
+        # self.__dataframe["all"] returns the total repeats dataframe
+        self.__dataframe = None
+
     def __get_text_sets(self) -> list:
         finlist = []
         texts = self.original
@@ -96,6 +100,9 @@ class BOW:
                 else:
                     fin_dict[word] = wordset[word]
         return fin_dict
+
+    def __get_dataframe(self): pass
+
 
 def test():
     """Method used for testing implemented class"""
