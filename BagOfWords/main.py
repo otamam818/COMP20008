@@ -1,7 +1,6 @@
 # What we need: a place to store 2 inputs, a prompt and manager
 # A place to store the original words, set of stemmed words, dataframe
 # unique words (useful), unique words (useful+useless)
-from nltk.data import find
 from head import *
 
 class BOW:
@@ -41,7 +40,10 @@ class BOW:
                 word = "".join(split("'\w*", word.casefold()))
                 valid_word = not(word in self.stopwords)
                 if valid_word:
-                    finlist[i].add(word.casefold())
+                    if self.__has_digit(word):
+                        finlist[i].add(NUMBER)    
+                    else:
+                        finlist[i].add(word.casefold())
                 else:
                     if word in self.useless:
                         self.useless[word] += 1
@@ -50,6 +52,10 @@ class BOW:
                 
         print(f"finlist is {finlist}")
         return finlist
+
+    @staticmethod
+    def __has_digit(aStr): 
+        return len(findall("\d+", aStr)) != 0
 
     def __get_repeats(self) -> list:
         # make a dictionary that counts the words and 
@@ -66,11 +72,17 @@ class BOW:
 
     @staticmethod
     def __append_accordingly(finlist, tokenized_wordset, index, word) -> None:
+        finset = set(finlist[index])
         if word in tokenized_wordset[index]:
-            if word in set(finlist[index]):
+            if word in finset:
                 finlist[index][word] += 1
             else:
                 finlist[index][word] = 1
+        elif BOW.__has_digit(word):
+            if NUMBER in finset:
+                finlist[index][NUMBER] += 1
+            else:   
+                finlist[index][NUMBER]  = 1
 
     def get_repeats(self, index) -> dict:
         return self.__repeats_list[index]
@@ -87,7 +99,7 @@ class BOW:
 
 def test():
     """Method used for testing implemented class"""
-    texts = ["Gaara of the Sand didn't die", "Naruto - Gaara's best friend"]
+    texts = ["Talk 31, talk", "Are you the 100th monkey?"]
     # print("Enter text then press ENTER to enter another text")
     # print("Press CTRL+C to exit once you are done pressing ENTER")
     try:
