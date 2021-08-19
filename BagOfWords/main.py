@@ -29,7 +29,7 @@ class BOW:
 
         # a dictionary of all dataframes
         # self.__dataframe["all"] returns the total repeats dataframe
-        self.__dataframe = None
+        self.__dataframe = self.__get_dataframe()
 
     def __get_text_sets(self) -> list:
         finlist = []
@@ -101,7 +101,18 @@ class BOW:
                     fin_dict[word] = wordset[word]
         return fin_dict
 
-    def __get_dataframe(self): pass
+    def __get_dataframe(self) -> dict: 
+        findict = dict()
+        for i in range(len(self.__repeats_list)):
+            BOW.__create_dataframe(i)
+        return findict
+    
+    @staticmethod
+    def __create_dataframe(aDict: dict) -> pd.DataFrame:
+        pass
+
+    def get_df(self, index: int):
+        return self.__dataframe[index]
 
 
 def test():
