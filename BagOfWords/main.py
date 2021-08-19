@@ -1,6 +1,3 @@
-# What we need: a place to store 2 inputs, a prompt and manager
-# A place to store the original words, set of stemmed words, dataframe
-# unique words (useful), unique words (useful+useless)
 from head import *
 
 class BOW:
@@ -26,6 +23,8 @@ class BOW:
         # word repeated in given text body (based on index)
         self.__repeats_list = self.__get_repeats()
 
+        # a dictionary counting the total 
+        # number of repeats of all words inserted
         self.total_repeats = self.__get_total_repeats()
 
     def __get_text_sets(self) -> list:
