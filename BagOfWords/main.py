@@ -103,15 +103,17 @@ class BOW:
 
     def __get_dataframe(self) -> dict: 
         findict = dict()
-        for i in range(len(self.__repeats_list)):
-            BOW.__create_dataframe(i)
+        for index in range(len(self.__repeats_list)):
+            findict[index] = BOW.__create_df(self.__repeats_list[index])
+        findict[ALL] = BOW.__create_df(self.total_repeats)
         return findict
     
     @staticmethod
-    def __create_dataframe(aDict: dict) -> pd.DataFrame:
-        pass
+    def __create_df(aDict: dict, inp_type: str=HORIZONTAL) -> pd.DataFrame:
+        if inp_type == HORIZONTAL:
+            return pd.DataFrame(aDict)
 
-    def get_df(self, index: int):
+    def get_df(self, index: int) -> pd.DataFrame:
         return self.__dataframe[index]
 
 

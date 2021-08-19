@@ -18,3 +18,5 @@ import pandas as pd
 # Constants
 from typing import Final
 NUMBER: Final[str] = "#num#"
+HORIZONTAL: Final[str] = "horizontal"
+ALL: Final[str] = "all"
