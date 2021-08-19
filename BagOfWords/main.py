@@ -54,7 +54,8 @@ class BOW:
         return finlist
 
     @staticmethod
-    def __has_digit(aStr): 
+    def __has_digit(aStr):
+        """Checks if the given string has a digit in it"""
         return len(findall("\d+", aStr)) != 0
 
     def __get_repeats(self) -> list:
