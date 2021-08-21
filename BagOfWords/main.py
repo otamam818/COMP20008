@@ -101,20 +101,32 @@ class BOW:
                     fin_dict[word] = wordset[word]
         return fin_dict
 
-    def __get_dataframe(self) -> dict: 
+    def __get_dataframe(self) -> pd.DataFrame: 
         findict = dict()
-        for index in range(len(self.__repeats_list)):
-            findict[index] = BOW.__create_df(self.__repeats_list[index])
-        findict[ALL] = BOW.__create_df(self.total_repeats)
-        return findict
+        wordset = sorted(list(self.total_repeats))
+        for word in wordset:
+            findict[word] = []
+            for aDict in self.__repeats_list:
+                if word in aDict:
+                    findict[word].append(aDict[word])
+                else:
+                    findict[word].append(0)
+            findict[word].append(self.total_repeats[word])
+        #     findict[index] = BOW.__create_df(self.__repeats_list[index])
+        # findict[ALL] = BOW.__create_df(self.total_repeats)
+        my_df = pd.DataFrame(findict)
+        indices = [str(i) for i in range(1, len(self.__repeats_list)+1)]
+        indices.append(ALL)
+        my_df.index = indices
+        return my_df
     
     @staticmethod
     def __create_df(aDict: dict, inp_type: str=HORIZONTAL) -> pd.DataFrame:
         if inp_type == HORIZONTAL:
             return pd.DataFrame(aDict)
 
-    def get_df(self, index: int) -> pd.DataFrame:
-        return self.__dataframe[index]
+    def get_df(self) -> pd.DataFrame:
+        return self.__dataframe
 
 
 def test():

@@ -4,7 +4,7 @@ from nltk.corpus import stopwords
 #adding custom stopwords
 from string import punctuation as __punctuations
 my_stopwords = set(stopwords.words('english'))
-my_stopwords.add("n't")
+my_stopwords.update(["n't"] + list("’"))
 for punctuation_mark in __punctuations:
     my_stopwords.add(punctuation_mark)
 
@@ -19,4 +19,4 @@ import pandas as pd
 from typing import Final
 NUMBER: Final[str] = "#num#"
 HORIZONTAL: Final[str] = "horizontal"
-ALL: Final[str] = "all"
+ALL: Final[str] = "All"
